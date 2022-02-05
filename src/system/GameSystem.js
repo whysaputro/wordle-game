@@ -4,6 +4,7 @@ const { Guess: { playerGuess, playerPreviousGuess } } = require('../utils/Guess'
 class GameSystem {
   constructor(wordlistService, promptsHandler) {
     this._MAX_TRIES = 6;
+    this._tries = 0;
     this._puzzle = wordlistService.getRandomWord();
     this._promptsHandler = promptsHandler;
     this._playerGuess = playerGuess;
@@ -13,9 +14,9 @@ class GameSystem {
     this._globalResult = '';
   }
 
-  async startGame(tries) {
+  async startGame() {
     // User gets 5 tries to solve the puzzle not including first guess
-    if (tries < this._MAX_TRIES) {
+    if (this._tries < this._MAX_TRIES) {
     // Ask the player for guess a word
       const response = await this._promptsHandler.getResponseUser();
       this._playerGuess = response.word;
@@ -39,7 +40,7 @@ class GameSystem {
         // this forces std out to print out the results for the last guess
         process.stdout.write('\n');
         // repeat the game and increment the number of tries
-        this.startGame(++tries);
+        this.startGame(this._tries++);
       }
     } else {
       console.log(`\nINCORRECT: The word was ${this._puzzle}`);

@@ -8,7 +8,7 @@ const init = () => {
   const gameSystem = new GameSystem(wordlistService, promptsHandler);
 
   // Start the game
-  gameSystem.startGame(0);
+  gameSystem.startGame();
 };
 
 init();
