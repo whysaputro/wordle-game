@@ -2,9 +2,9 @@ const chalk = require('chalk');
 const { Guess: { playerGuess, playerPreviousGuess } } = require('../utils/Guess');
 
 class GameSystem {
-  constructor(MAX_TRIES, puzzle, promptsHandler) {
-    this._MAX_TRIES = MAX_TRIES;
-    this._puzzle = puzzle;
+  constructor(wordlistService, promptsHandler) {
+    this._MAX_TRIES = 6;
+    this._puzzle = wordlistService.getRandomWord();
     this._promptsHandler = promptsHandler;
     this._playerGuess = playerGuess;
     this._playerPreviousGuess = playerPreviousGuess;

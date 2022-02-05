@@ -5,7 +5,7 @@ const { GameSystem } = require('./system/GameSystem');
 const init = () => {
   const wordlistService = new WordlistService();
   const promptsHandler = new PromptsHandler(wordlistService);
-  const gameSystem = new GameSystem(6, wordlistService.getRandomWord(), promptsHandler);
+  const gameSystem = new GameSystem(wordlistService, promptsHandler);
 
   // Start the game
   gameSystem.startGame(0);
