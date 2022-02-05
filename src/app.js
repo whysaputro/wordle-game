@@ -4,11 +4,11 @@ const { GameSystem } = require('./system/GameSystem');
 
 const init = () => {
   const wordlistService = new WordlistService();
-  const prompt = new PromptsHandler(wordlistService);
-  const game = new GameSystem(6, wordlistService.getRandomWord(), prompt);
+  const promptsHandler = new PromptsHandler(wordlistService);
+  const gameSystem = new GameSystem(6, wordlistService.getRandomWord(), promptsHandler);
 
   // Start the game
-  game.startGame(0);
+  gameSystem.startGame(0);
 };
 
 init();

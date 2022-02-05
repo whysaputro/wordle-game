@@ -2,10 +2,10 @@ const chalk = require('chalk');
 const { Guess: { playerGuess, playerPreviousGuess } } = require('../utils/Guess');
 
 class GameSystem {
-  constructor(MAX_TRIES, puzzle, prompts) {
+  constructor(MAX_TRIES, puzzle, promptsHandler) {
     this._MAX_TRIES = MAX_TRIES;
     this._puzzle = puzzle;
-    this._prompts = prompts;
+    this._promptsHandler = promptsHandler;
     this._playerGuess = playerGuess;
     this._playerPreviousGuess = playerPreviousGuess;
 
@@ -17,7 +17,7 @@ class GameSystem {
     // User gets 5 tries to solve the puzzle not including first guess
     if (tries < this._MAX_TRIES) {
     // Ask the player for guess a word
-      const response = await this._prompts.getResponseUser();
+      const response = await this._promptsHandler.getResponseUser();
       this._playerGuess = response.word;
       if (typeof this._playerGuess === 'undefined') {
       /* this scenario happens when a user presses Ctrl+C and terminates program
